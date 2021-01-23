@@ -1,30 +1,19 @@
-import { isNumberCheck } from '~/lib/validations.js'
-
-export const money = val => {
-  val = parseFloat(val)
+export const money = (val: number) : string => {
   const locale = window.navigator.userLanguage || window.navigator.language
 
-  if (!isNumberCheck(val))
-    return parseFloat(0.0).toLocaleString(locale, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 6
-    })
   return val.toLocaleString(locale, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 6
   })
 }
 
-export const integer = val => {
-  val = parseFloat(val)
+export const integer = (val: number) : string => {
   const locale = window.navigator.userLanguage || window.navigator.language
 
-  if (!isNumberCheck(val))
-    return parseFloat(0.0).toLocaleString(locale, { maximumFractionDigits: 0 })
   return val.toLocaleString(locale, { maximumFractionDigits: 0 })
 }
 
-export const date = val => {
+export const date = (val: string) : string => {
   const locale = window.navigator.userLanguage || window.navigator.language
 
   const parsed = new Date(val)
@@ -32,7 +21,7 @@ export const date = val => {
   return parsed.toLocaleDateString(locale, options)
 }
 
-export const datetime = val => {
+export const datetime = (val: string) : string => {
   const locale = window.navigator.userLanguage || window.navigator.language
 
   const parsed = new Date(val)

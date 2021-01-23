@@ -3,11 +3,11 @@
     ref="icon"
     :src="src"
     alt="Balancer icon"
-    class="h-8"
+    class="h-6"
   >
 </template>
 
-<script>
+<script lang="ts">
 import { mapState } from 'vuex'
 
 export default {
@@ -16,11 +16,11 @@ export default {
   computed: {
     ...mapState(['darkMode']),
 
-    imageName () {
+    imageName () : string {
       return this.darkMode ? 'icon_white' : 'icon'
     },
 
-    src () {
+    src () : string {
       return require(`~/assets/images/${this.imageName}.svg`)
     }
   }

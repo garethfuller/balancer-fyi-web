@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DarkModeToggle from '~/components/btns/DarkModeToggle.vue'
 
 export default {

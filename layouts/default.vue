@@ -7,7 +7,7 @@
     <AppFooter />
   </div>
 </template>
-<script>
+<script lang="ts">
 import AppNav from '~/components/navs/AppNav.vue'
 import AppFooter from '~/components/navs/AppFooter.vue'
 

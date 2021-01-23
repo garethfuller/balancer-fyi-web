@@ -1,11 +1,11 @@
 export const ogMeta = ({
-  title = 'Title of page',
-  description = 'Description of page',
-  siteName = 'Website brand name',
-  url = 'https://example.com',
-  image = 'https://example.com/images/og_image.png',
-  twitter = '@handle'
-} = {}) => {
+  title = 'Balancer FYI - Alternative UI for Balancer Pools',
+  description = 'An alternative UI for exploring and interacting with Balancer pools.',
+  siteName = 'Balancer FYI',
+  url = 'https://balancer.fyi',
+  image = 'https://balancer.fyi/images/og_image.png',
+  twitter = '@garethafuller'
+} = {}) : Object[] => {
   return [
     { hid: 'description', name: 'description', content: description },
     { hid: 'og:title', name: 'og:title', content: title },

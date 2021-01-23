@@ -5,7 +5,7 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
 import AppLogo from '~/components/images/AppLogo.vue'
 import AuthBtn from '~/components/btns/AuthBtn.vue'
 
