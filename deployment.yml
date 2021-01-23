@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: balancer-fyi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: <IMAGE>
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred

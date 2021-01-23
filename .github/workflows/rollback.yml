@@ -1,0 +1,56 @@
+name: Rollback CI/CD
+
+on:
+  workflow_dispatch:
+    inputs:
+      imageTag:
+        description: Commit SHA
+        required: true
+
+env:
+  IMAGE_PATH: garethfuller/balancer-fyi-web
+  URL: https://balancer.fyi
+  K8S_NAMESPACE: balancer-fyi
+  K8S_DEPLOYMENT: web
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start deployment
+        uses: bobheadxi/deployments@v0.4.3
+        id: deployment
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: production
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.imageTag }}
+      
+      - name: Set tag
+        run: echo "IMAGE_TAG=$(echo ${{ github.event.inputs.imageTag }} | cut -c 1-7)" >> $GITHUB_ENV
+
+      - name: Update deployment manifest
+        run: sed -i 's|<IMAGE>|${{ env.IMAGE_PATH }}:'${{ env.IMAGE_TAG }}'|' $GITHUB_WORKSPACE/deployment.yml
+
+      - name: Add kube config
+        run: mkdir -p $GITHUB_WORKSPACE/.kube && echo '${{ secrets.KUBECONFIG }}' | base64 -d > $GITHUB_WORKSPACE/.kube/config
+
+      - name: Deploy to Kubernetes
+        run: kubectl apply --kubeconfig $GITHUB_WORKSPACE/.kube/config -f $GITHUB_WORKSPACE/deployment.yml
+
+      - name: Verify deployment
+        run: kubectl rollout status --kubeconfig $GITHUB_WORKSPACE/.kube/config --namespace ${{ env.K8S_NAMESPACE }} deployment/${{ env.K8S_DEPLOYMENT }}
+    
+      - name: Update deployment status
+        uses: bobheadxi/deployments@v0.4.3
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          env_url: ${{ env.URL }}

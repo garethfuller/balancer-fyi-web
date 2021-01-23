@@ -1,0 +1,37 @@
+{
+  "name": "balancer-fyi-web",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ext .js,.ts,.vue --ignore-path .gitignore .",
+    "lint:fix:dry": "eslint --fix-dry-run --ext .js,.ts,.vue --ignore-path .gitignore .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxt/typescript-runtime": "^2.0.1",
+    "@nuxtjs/axios": "^5.12.2",
+    "core-js": "^3.6.5",
+    "nuxt": "^2.14.12"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.14.12",
+    "@nuxt/typescript-build": "^2.0.4",
+    "@nuxtjs/eslint-config-typescript": "^5.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/tailwindcss": "^3.4.2",
+    "@types/node": "^14.14.22",
+    "autoprefixer": "^9",
+    "babel-core": "7.0.0-bridge.0",
+    "eslint": "^7.10.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "postcss": "^7",
+    "prettier": "^2.2.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  }
+}
