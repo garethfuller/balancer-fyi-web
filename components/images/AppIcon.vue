@@ -17,6 +17,7 @@ export default {
     ...mapState(['darkMode']),
 
     imageName () : string {
+      // @ts-ignore
       return this.darkMode ? 'icon_white' : 'icon'
     },
 
