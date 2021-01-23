@@ -27,7 +27,7 @@ COPY --from=build --chown=deploy:deploy /build/static ./static/
 COPY --from=build --chown=deploy:deploy /build/lib ./lib/
 COPY --from=build --chown=deploy:deploy /build/.nuxt ./.nuxt/
 COPY --from=build --chown=deploy:deploy /build/tailwind.config.js ./tailwind.config.js
-COPY --from=build --chown=deploy:deploy /build/tsconfig.js ./tsconfig.js
+COPY --from=build --chown=deploy:deploy /build/tsconfig.json ./tsconfig.json
 
 CMD yarn run start
 
