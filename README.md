@@ -34,7 +34,7 @@ On push or merge to the `main` branch the CI/CD workflows are triggered. That is
 4. The Kubernetes `deployment.yml` manifest is updated and applied to the cluster.
 
 ## Manual Deployments
-Deployments can be triggered manually from the `Actions tab. 
+Deployments can be triggered manually from the [Actions tab](/actions). 
 
 To trigger a re-deployment of the latest commit on the `main` branch:
 
