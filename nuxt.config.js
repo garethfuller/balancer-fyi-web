@@ -1,6 +1,4 @@
-import { NuxtConfig } from '@nuxt/types'
-
-const config: NuxtConfig = {
+export default {
   ssr: false,
 
   loading: false,
@@ -93,5 +91,3 @@ const config: NuxtConfig = {
     }
   }
 }
-
-export default config
