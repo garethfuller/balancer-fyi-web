@@ -29,7 +29,8 @@ declare module 'vuex/types/index' {
 }
 
 const ethConfig: Plugin = (context, inject) => {
-  inject('ethConfig', networkConfigs[context.$config.network])
+  const network: string = context.$config.network || 'homestead'
+  inject('ethConfig', networkConfigs[network])
 }
 
 export default ethConfig

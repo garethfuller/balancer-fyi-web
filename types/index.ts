@@ -68,3 +68,7 @@ export interface EthConfigObj {
   addresses: object,
   tokens: EthConfigTokens
 }
+
+export interface EthConfigNetworks {
+  [key: string]: EthConfigObj
+}

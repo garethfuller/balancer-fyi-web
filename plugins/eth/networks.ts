@@ -1,5 +1,5 @@
 import homesteadRegistry from '@balancer-labs/assets/generated/pm/registry.homestead.json'
-import { EthConfigObj } from '~/types'
+import { EthConfigObj, EthConfigNetworks } from '~/types'
 
 export const homestead: EthConfigObj = {
   network: 'homestead',
@@ -21,4 +21,4 @@ export const homestead: EthConfigObj = {
   tokens: homesteadRegistry.tokens
 }
 
-export default [homestead] as EthConfigObj[]
+export default { homestead } as EthConfigNetworks
