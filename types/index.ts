@@ -2,6 +2,11 @@ export interface ConfigEnv {
   network: string
 }
 
+export interface TokenMeta {
+  id: string,
+  color: string
+}
+
 export interface Token {
   id: string,
   address: string,
@@ -10,8 +15,9 @@ export interface Token {
   decimals: number,
   denormWeight: string,
   symbol: string,
-  weightPercent: number
-  meta: object
+  weightPercent: number,
+  color: string,
+  meta: TokenMeta
 }
 
 export interface Swap {
@@ -43,19 +49,15 @@ export interface Prices {
   [key: string]: Price
 }
 
-export interface ethConfigTokenMeta {
-  id: string
+export interface EthConfigTokens {
+  [key: string]: TokenMeta
 }
 
-export interface ethConfigTokens {
-  [key: string]: ethConfigTokenMeta
+export interface EthConfigRegistry {
+  tokens: EthConfigTokens
 }
 
-export interface ethConfigRegistry {
-  tokens: ethConfigTokens
-}
-
-export interface ethConfigObj {
+export interface EthConfigObj {
   network: string,
   chainId: number,
   defaultPrecision: number,
@@ -64,5 +66,5 @@ export interface ethConfigObj {
   subgraphUrl: string,
   explorer: string,
   addresses: object,
-  tokens: ethConfigTokens
+  tokens: EthConfigTokens
 }

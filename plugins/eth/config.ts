@@ -1,22 +1,22 @@
 import { Plugin } from '@nuxt/types'
 import networkConfigs from './networks'
-import { ethConfigObj } from '~/types'
+import { EthConfigObj } from '~/types'
 
 declare module 'vue/types/vue' {
   // this.$myInjectedFunction inside Vue components
   interface Vue {
-    $ethConfig: ethConfigObj
+    $ethConfig: EthConfigObj
   }
 }
 
 declare module '@nuxt/types' {
   // nuxtContext.app.$myInjectedFunction inside asyncData, fetch, plugins, middleware, nuxtServerInit
   interface NuxtAppOptions {
-    $ethConfig: ethConfigObj
+    $ethConfig: EthConfigObj
   }
   // nuxtContext.$myInjectedFunction
   interface Context {
-    $ethConfig: ethConfigObj
+    $ethConfig: EthConfigObj
   }
 }
 
@@ -24,7 +24,7 @@ declare module 'vuex/types/index' {
   // this.$myInjectedFunction inside Vuex stores
   // eslint-disable-next-line
   interface Store<S> {
-    $ethConfig: ethConfigObj
+    $ethConfig: EthConfigObj
   }
 }
 

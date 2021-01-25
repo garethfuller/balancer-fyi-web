@@ -1,7 +1,7 @@
 import homesteadRegistry from '@balancer-labs/assets/generated/pm/registry.homestead.json'
-import { ethConfigObj } from '~/types'
+import { EthConfigObj } from '~/types'
 
-export const homestead: ethConfigObj = {
+export const homestead: EthConfigObj = {
   network: 'homestead',
   chainId: 1,
   defaultPrecision: 2,
@@ -18,7 +18,7 @@ export const homestead: ethConfigObj = {
     weth: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
     multicall: '0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441'
   },
-  ...homesteadRegistry
+  tokens: homesteadRegistry.tokens
 }
 
-export default [homestead] as ethConfigObj[]
+export default [homestead] as EthConfigObj[]
