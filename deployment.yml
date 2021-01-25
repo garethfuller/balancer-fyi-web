@@ -18,6 +18,9 @@ spec:
           image: <IMAGE>
           ports:
             - containerPort: 3000
+          env:
+            - name: NETWORK
+              value: 'homestead'
           imagePullPolicy: Always
       imagePullSecrets:
         - name: regcred

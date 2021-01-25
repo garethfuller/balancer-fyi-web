@@ -8,6 +8,7 @@ COPY . ./
 ENV NODE_ENV production
 ENV NUXT_HOST 0.0.0.0
 ENV NUXT_PORT 3000
+ENV NETWORK homestead
 RUN yarn run build
 RUN rm -rf node_modules && yarn install --production=true
 
