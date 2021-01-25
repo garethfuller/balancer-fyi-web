@@ -22,12 +22,13 @@ ENV NODE_ENV production
 EXPOSE 3000
 
 COPY --from=build --chown=deploy:deploy /build/package.json /build/yarn.* ./
+COPY --from=build --chown=deploy:deploy /build/nuxt.config.ts ./
 COPY --from=build --chown=deploy:deploy /build/nuxt.config.js ./
 COPY --from=build --chown=deploy:deploy /build/node_modules ./node_modules/
 COPY --from=build --chown=deploy:deploy /build/static ./static/
 COPY --from=build --chown=deploy:deploy /build/lib ./lib/
 COPY --from=build --chown=deploy:deploy /build/.nuxt ./.nuxt/
-COPY --from=build --chown=deploy:deploy /build/tailwind.config.ts ./tailwind.config.ts
+COPY --from=build --chown=deploy:deploy /build/tailwind.config.js ./tailwind.config.js
 COPY --from=build --chown=deploy:deploy /build/tsconfig.json ./tsconfig.json
 
 CMD yarn run start
