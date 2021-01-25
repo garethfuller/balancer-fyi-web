@@ -25,7 +25,6 @@ import Vue from 'vue'
 import { mapActions, mapState, mapMutations } from 'vuex'
 // import WalletConnect from '@walletconnect/client'
 // import QRCodeModal from '@walletconnect/qrcode-modal'
-import EthAddress from '~/components/labels/EthAddress.vue'
 import WalletDialog from '~/components/dialogs/WalletDialog.vue'
 import { ModuleTree } from '~/store'
 
@@ -37,7 +36,6 @@ export default Vue.extend({
   name: 'AuthBtn',
 
   components: {
-    EthAddress,
     WalletDialog
   },
 
