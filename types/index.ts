@@ -4,7 +4,8 @@ export interface ConfigEnv {
 
 export interface TokenMeta {
   id: string,
-  color: string
+  color: string,
+  address: string
 }
 
 export interface Token {
@@ -41,12 +42,8 @@ export interface Pool {
   tokens: Token[]
 }
 
-export interface Price {
-  usd: number,
-}
-
 export interface Prices {
-  [key: string]: Price
+  [key: string]: number
 }
 
 export interface EthConfigTokens {
