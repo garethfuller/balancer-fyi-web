@@ -17,7 +17,7 @@ export const actions: ActionTree<PoolsState, RootState> = {
   async getAll ({ commit }: ActionContext<PoolsState, RootState>) : Promise<void> {
     const query = jsonToGraphQLQuery(queryPayload())
     const { data } = await this.$axios.$post(this.$ethConfig.subgraphUrl, { query })
-    commit('setPools', data.pools.map(serializePool))
+    commit('setPools', data.pools.map((pool: Pool) => serializePool(pool, this.$ethConfig)))
   }
 }
 
