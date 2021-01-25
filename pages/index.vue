@@ -6,8 +6,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapActions, mapState } from 'vuex'
+import { mapActions } from 'vuex'
 import PoolList from '~/components/lists/pool_list/PoolList.vue'
+import { Pool } from '~/types'
 
 export default Vue.extend({
   components: {
@@ -21,9 +22,7 @@ export default Vue.extend({
   },
 
   computed: {
-    ...mapState({
-      pools: state => state.pools.all
-    })
+    pools (): Pool[] { return this.$store.state.pools.all }
   },
 
   async beforeMount () {

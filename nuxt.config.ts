@@ -1,5 +1,4 @@
 import { NuxtConfig } from '@nuxt/types'
-import { ogMeta } from './lib/meta'
 
 const config: NuxtConfig = {
   ssr: false,
@@ -22,8 +21,7 @@ const config: NuxtConfig = {
     title: 'Balancer FYI - Alternative UI for Balancer Pools',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      ...ogMeta()
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
       {

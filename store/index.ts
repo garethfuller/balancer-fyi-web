@@ -1,10 +1,12 @@
 import { MutationTree } from 'vuex'
 import { AuthState } from './auth'
 import { PoolsState } from './pools'
+import { PricesState } from './prices'
 
 export interface ModuleTree {
   auth: AuthState,
-  pools: PoolsState
+  pools: PoolsState,
+  prices: PricesState
 }
 
 export interface RootState {

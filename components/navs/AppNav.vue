@@ -6,15 +6,16 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import AppLogo from '~/components/images/AppLogo.vue'
 import AuthBtn from '~/components/btns/AuthBtn.vue'
 
-export default {
+export default Vue.extend({
   name: 'AppNav',
 
   components: {
     AppLogo,
     AuthBtn
   }
-}
+})
 </script>

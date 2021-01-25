@@ -8,13 +8,14 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import AppIcon from './AppIcon.vue'
 
-export default {
+export default Vue.extend({
   name: 'AppLogo',
 
   components: {
     AppIcon
   }
-}
+})
 </script>

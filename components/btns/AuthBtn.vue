@@ -22,11 +22,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapActions, mapState, mapMutations } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
+import { Web3Provider } from '@ethersproject/providers'
+import { Signer } from '@ethersproject/abstract-signer'
 // import WalletConnect from '@walletconnect/client'
 // import QRCodeModal from '@walletconnect/qrcode-modal'
 import WalletDialog from '~/components/dialogs/WalletDialog.vue'
-import { ModuleTree } from '~/store'
 
 interface ConnectInfo {
   chainId: string;
@@ -54,12 +55,10 @@ export default Vue.extend({
   },
 
   computed: {
-    ...mapState({
-      provider: (state: ModuleTree) => state.auth.provider,
-      signer: (state: ModuleTree) => state.auth.signer,
-      address: (state: ModuleTree) => state.auth.address,
-      ensName: (state: ModuleTree) => state.auth.ensName
-    }),
+    provider (): Web3Provider { return this.$store.state.auth.provider },
+    signer (): Signer { return this.$store.state.auth.signer },
+    address (): string { return this.$store.state.auth.address },
+    ensName (): string { return this.$store.state.auth.ensName },
 
     hasBrowserProvider (): boolean {
       return typeof window.ethereum !== 'undefined'

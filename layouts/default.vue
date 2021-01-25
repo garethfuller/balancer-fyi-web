@@ -8,11 +8,12 @@
   </div>
 </template>
 <script lang="ts">
+import Vue from 'vue'
 import { mapActions } from 'vuex'
 import AppNav from '~/components/navs/AppNav.vue'
 import AppFooter from '~/components/navs/AppFooter.vue'
 
-export default {
+export default Vue.extend({
   components: {
     AppNav,
     AppFooter
@@ -48,6 +49,6 @@ export default {
       getPrices: 'prices/getAll'
     })
   }
-}
+})
 </script>
 <style></style>

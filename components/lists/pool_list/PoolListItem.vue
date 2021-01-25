@@ -19,23 +19,21 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { mapState } from 'vuex'
+import Vue, { PropOptions } from 'vue'
 import { liquidityFor } from '~/lib/balancer/poolHelpers'
+import { Pool, Prices } from '~/types'
 
 export default Vue.extend({
   name: 'PoolListItem',
 
   props: {
-    pool: { type: Object, required: true }
+    pool: { type: Object, required: true } as PropOptions<Pool>
   },
 
   computed: {
-    ...mapState({
-      prices: state => state.prices.all
-    }),
+    prices (): Prices { return this.$store.state.prices.all },
 
-    swapFee () : number {
+    swapFee () : string {
       return this.pool.swapFee
     },
 

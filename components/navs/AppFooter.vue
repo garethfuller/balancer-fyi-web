@@ -7,13 +7,14 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import DarkModeToggle from '~/components/btns/DarkModeToggle.vue'
 
-export default {
+export default Vue.extend({
   name: 'AppFooter',
 
   components: {
     DarkModeToggle
   }
-}
+})
 </script>

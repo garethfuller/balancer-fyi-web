@@ -8,9 +8,10 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import { mapState, mapMutations } from 'vuex'
 
-export default {
+export default Vue.extend({
   name: 'DarkModeToggle',
 
   computed: {
@@ -30,5 +31,5 @@ export default {
       this.toggleDarkMode()
     }
   }
-}
+})
 </script>

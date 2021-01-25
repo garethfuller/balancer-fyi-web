@@ -8,16 +8,16 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import { mapState } from 'vuex'
 
-export default {
+export default Vue.extend({
   name: 'AppIcon',
 
   computed: {
     ...mapState(['darkMode']),
 
     imageName () : string {
-      // @ts-ignore
       return this.darkMode ? 'icon_white' : 'icon'
     },
 
@@ -25,5 +25,5 @@ export default {
       return require(`~/assets/images/${this.imageName}.svg`)
     }
   }
-}
+})
 </script>
