@@ -2,6 +2,7 @@ FROM node:14-alpine as build
 
 WORKDIR /build
 COPY package.json yarn.* ./
+RUN apk add --no-cache make gcc g++ python3
 RUN yarn install
 COPY . ./
 ENV NODE_ENV production
