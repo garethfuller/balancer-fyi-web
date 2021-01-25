@@ -10,7 +10,7 @@
       {{ _percent(swapFee) }}
     </div>
     <div>
-      {{ _money(liquiditity) }}
+      {{ _money(liquidity) }}
     </div>
     <div>
       {{ _money(pool.recentSwapVolume) }}
@@ -21,7 +21,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import { liquiditityFor } from '~/lib/balancer/poolHelpers'
+import { liquidityFor } from '~/lib/balancer/poolHelpers'
 
 export default Vue.extend({
   name: 'PoolListItem',
@@ -39,8 +39,8 @@ export default Vue.extend({
       return this.pool.swapFee
     },
 
-    liquiditity () : number {
-      return Number(liquiditityFor(this.pool, this.prices))
+    liquidity () : number {
+      return Number(liquidityFor(this.pool, this.prices))
     }
   }
 })

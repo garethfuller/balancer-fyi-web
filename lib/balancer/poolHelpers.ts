@@ -1,7 +1,7 @@
 import BigNumber from '~/lib/bignumber'
 import { Pool, Prices } from '~/types'
 
-export function liquiditityFor (pool: Pool, prices: Prices) : string {
+export function liquidityFor (pool: Pool, prices: Prices) : string {
   let sumWeight = new BigNumber(0)
   let sumValue = new BigNumber(0)
 
