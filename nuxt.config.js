@@ -80,7 +80,18 @@ export default {
   axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        'postcss-preset-env': {
+          stage: 1,
+          features: {
+            'focus-within-pseudo-class': false
+          }
+        }
+      }
+    }
+  },
 
   // https://typescript.nuxtjs.org/guide/lint#runtime-lint
   typescript: {
