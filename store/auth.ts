@@ -1,12 +1,12 @@
 import { ethers } from 'ethers'
 import { Web3Provider } from '@ethersproject/providers'
 import { Signer } from '@ethersproject/abstract-signer'
-import { ActionContext } from 'vuex'
+import { ActionContext, ActionTree, MutationTree } from 'vuex'
 import { RootState } from './index'
 
 export interface AuthState {
-  provider?: Web3Provider | undefined,
-  signer?: Signer | undefined,
+  provider?: Web3Provider,
+  signer?: Signer,
   address: string,
   ensName: string
 }
@@ -16,7 +16,7 @@ export const state = () : AuthState => ({
   ensName: ''
 })
 
-export const actions = {
+export const actions: ActionTree<AuthState, RootState> = {
   getProvider ({ commit }: ActionContext<AuthState, RootState>) : void {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     commit('setProvider', provider)
@@ -42,7 +42,7 @@ export const actions = {
   }
 }
 
-export const mutations = {
+export const mutations: MutationTree<AuthState> = {
   setProvider (state: AuthState, provider: Web3Provider) {
     state.provider = provider
   },

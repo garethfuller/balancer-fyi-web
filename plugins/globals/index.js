@@ -1,12 +1,10 @@
 import Vue from 'vue'
 
-import * as mixins from './mixins'
+import mixins from './mixins'
 
 const Globals = {
   install (Vue) {
-    Object.keys(mixins).forEach(mixin => {
-      Vue.mixin(mixins[mixin])
-    })
+    Vue.mixin(mixins)
   }
 }
 

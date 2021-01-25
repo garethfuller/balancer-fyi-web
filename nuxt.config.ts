@@ -1,6 +1,7 @@
+import { NuxtConfig } from '@nuxt/types'
 import { ogMeta } from './lib/meta'
 
-export default {
+const config: NuxtConfig = {
   ssr: false,
 
   loading: false,
@@ -9,7 +10,9 @@ export default {
     host: '0.0.0.0'
   },
 
-  publicRuntimeConfig: {},
+  publicRuntimeConfig: {
+    network: process.env.NETWORK || 'homestead'
+  },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -52,7 +55,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/axios'],
+  plugins: [
+    '~/plugins/axios',
+    '~/plugins/eth/config',
+    '~/plugins/globals'
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: ['~/components/global'],
@@ -88,3 +95,5 @@ export default {
     }
   }
 }
+
+export default config
