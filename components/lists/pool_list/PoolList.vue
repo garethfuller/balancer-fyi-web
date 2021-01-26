@@ -8,18 +8,23 @@
     >
       <PoolListItem :pool="pool" />
     </BaseGridItem>
+    <BaseGridItem width="full" class="md:w-1/2 lg:w-1/3">
+      <LoadMoreBtn @click.native="$emit('loadMore')" />
+    </BaseGridItem>
   </BaseGrid>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import PoolListItem from './PoolListItem.vue'
+import LoadMoreBtn from '~/components/btns/LoadMoreBtn.vue'
 
 export default Vue.extend({
   name: 'PoolList',
 
   components: {
-    PoolListItem
+    PoolListItem,
+    LoadMoreBtn
   },
 
   props: {

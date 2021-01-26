@@ -9,7 +9,6 @@
           <EthAddress :address="pool.id" />
         </div>
       </div>
-      <!--  -->
       <div class="token-container px-4 flex flex-wrap items-center justify-center">
         <div class="flex flex-wrap justify-center">
           <div v-for="token in pool.tokens" :key="token.address" class="flex items-center bg-gray-100 dark:bg-gray-800 p-1 pr-2 rounded-full m-1">
@@ -23,7 +22,7 @@
             <span class="font-medium text mx-2">
               {{ _int(token.weightPercent) }}%
             </span>
-            <span class="text-xs">
+            <span class="token-sym text-xs">
               {{ token.symbol }}
             </span>
           </div>
@@ -113,5 +112,11 @@ export default Vue.extend({
 
 .token-container {
   height: 200px;
+}
+
+.token-sym {
+  max-width: 45px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

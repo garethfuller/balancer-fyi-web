@@ -16,6 +16,24 @@ export const state = () : AuthState => ({
   ensName: ''
 })
 
+export const mutations: MutationTree<AuthState> = {
+  setProvider (state: AuthState, provider: Web3Provider) {
+    state.provider = provider
+  },
+
+  setSigner (state: AuthState, signer: Signer) {
+    state.signer = signer
+  },
+
+  setAddress (state: AuthState, address: string) {
+    state.address = address
+  },
+
+  setEnsName (state: AuthState, name: string) {
+    state.ensName = name
+  }
+}
+
 export const actions: ActionTree<AuthState, RootState> = {
   getProvider ({ commit }: ActionContext<AuthState, RootState>) : void {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -39,23 +57,5 @@ export const actions: ActionTree<AuthState, RootState> = {
     const name = await state.provider.lookupAddress(state.address)
     const address = await state.provider.resolveName(name)
     if (address === state.address) commit('setEnsName', name)
-  }
-}
-
-export const mutations: MutationTree<AuthState> = {
-  setProvider (state: AuthState, provider: Web3Provider) {
-    state.provider = provider
-  },
-
-  setSigner (state: AuthState, signer: Signer) {
-    state.signer = signer
-  },
-
-  setAddress (state: AuthState, address: string) {
-    state.address = address
-  },
-
-  setEnsName (state: AuthState, name: string) {
-    state.ensName = name
   }
 }

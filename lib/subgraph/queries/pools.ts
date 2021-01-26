@@ -2,10 +2,11 @@ const now = Math.round(new Date().getTime() / 1000)
 const tsYesterday = now - 24 * 3600
 
 type Options = {
-  count: number
+  count?: number,
+  skip?: number
 }
 
-export const byLiquidityQuery = (options: Options = { count: 20 }) : object => ({
+export const byLiquidityQuery = (options: Options = { count: 20, skip: 0 }) : object => ({
   query: {
     pools: {
       __args: {
@@ -16,7 +17,7 @@ export const byLiquidityQuery = (options: Options = { count: 20 }) : object => (
           tokensList_not: []
         },
         first: options.count,
-        skip: 0,
+        skip: options.skip,
         orderBy: 'liquidity',
         orderDirection: 'desc'
       },

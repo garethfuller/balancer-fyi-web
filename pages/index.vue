@@ -1,6 +1,6 @@
 <template>
   <main>
-    <PoolList :pools="pools" />
+    <PoolList v-if="!loading" :pools="pools" @loadMore="loadMorePools" />
   </main>
 </template>
 
@@ -32,10 +32,15 @@ export default Vue.extend({
 
   methods: {
     ...mapActions({
-      getPools: 'pools/getAll'
+      getPools: 'pools/getAll',
+      getMorePools: 'pools/getMore'
       // getPoolsById: 'pools/getByIds'
       // getLatestSwaps: 'swaps/getLatest'
-    })
+    }),
+
+    async loadMorePools (): Promise<void> {
+      await this.getMorePools(this.pools.length)
+    }
 
     // ...mapMutations({
     //   setPools: 'pools/setPools'

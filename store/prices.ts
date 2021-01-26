@@ -16,18 +16,18 @@ export const state = () : PricesState => ({
   all: {}
 })
 
+export const mutations: MutationTree<PricesState> = {
+  setPrices (state: PricesState, prices: Prices) {
+    state.all = prices
+  }
+}
+
 export const actions: ActionTree<PricesState, RootState> = {
   async getAll ({ commit }: ActionContext<PricesState, RootState>) : Promise<void> {
     const { tokens } = this.$ethConfig
     const tokenIds = Object.keys(tokens).map(address => tokens[address].id).filter(id => !!id)
     const prices = await this.$axios.$get(`${API}/simple/price?ids=${tokenIds.join('%2C')}&vs_currencies=usd`)
     commit('setPrices', serialize(prices, this.$ethConfig))
-  }
-}
-
-export const mutations: MutationTree<PricesState> = {
-  setPrices (state: PricesState, prices: Prices) {
-    state.all = prices
   }
 }
 
