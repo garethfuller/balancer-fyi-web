@@ -9,7 +9,7 @@
         <BaseGrid>
           <BaseGridItem width="full" class="md:w-1/2">
             <div
-              class="wallet-btn bg-gray-100 text-gray-700 py-8 flex flex-col items-center justify-end cursor-pointer rounded hover:bg-gray-200 hover:text-gray-800"
+              class="wallet-btn bg-gray-100 dark:bg-gray-800 py-8 flex flex-col items-center justify-end cursor-pointer rounded hover:bg-gray-200 hover:text-gray-800"
               @click="$emit('clicked', 'metamask')"
             >
               <img :src="require('~/assets/images/wallets/metamask.svg')" alt="MetaMask logo" class="h-24 lg:h-32 w-auto">
@@ -20,7 +20,7 @@
           </BaseGridItem>
           <BaseGridItem width="full" class="md:w-1/2">
             <div
-              class="wallet-btn h-full bg-gray-100 text-gray-700 py-8 flex flex-col items-center justify-end cursor-pointer rounded hover:bg-gray-200 hover:text-gray-800"
+              class="wallet-btn h-full bg-gray-100 dark:bg-gray-800 py-8 flex flex-col items-center justify-end cursor-pointer rounded hover:bg-gray-200 hover:text-gray-800"
               @click="$emit('clicked', 'walletConnect')"
             >
               <img :src="require('~/assets/images/wallets/walletconnect.svg')" alt="WalletConnect logo" class="h-16 lg:h-20 w-auto mb-6">
