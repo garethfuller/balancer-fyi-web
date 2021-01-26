@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import PoolList from '~/components/lists/pool_list/PoolList.vue'
 import { Pool } from '~/types'
 
@@ -38,8 +38,14 @@ export default Vue.extend({
       // getLatestSwaps: 'swaps/getLatest'
     }),
 
+    ...mapMutations({
+      setLoading: 'pools/setLoading'
+    }),
+
     async loadMorePools (): Promise<void> {
+      this.setLoading(true)
       await this.getMorePools(this.pools.length)
+      this.setLoading(false)
     }
 
     // ...mapMutations({

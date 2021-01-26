@@ -6,11 +6,13 @@ import serializePool from '~/lib/subgraph/serializers/pools'
 import { Pool } from '~/types'
 
 export interface PoolsState {
-  all: Pool[]
+  all: Pool[],
+  loading: boolean
 }
 
 export const state = () : PoolsState => ({
-  all: []
+  all: [],
+  loading: false
 })
 
 export const mutations: MutationTree<PoolsState> = {
@@ -20,6 +22,10 @@ export const mutations: MutationTree<PoolsState> = {
 
   addPools (state: PoolsState, pools: Pool[]) {
     state.all.push(...pools)
+  },
+
+  setLoading (state: PoolsState, val: boolean) {
+    state.loading = val
   }
 }
 
