@@ -40,8 +40,10 @@ export default Vue.extend({
         { label: 'Create new', icon: 'fas fa-plus' }
       ],
       generalItems: [
-        { label: 'Exchange', icon: 'fas fa-exchange-alt' },
-        { label: 'About', icon: 'far fa-question-circle' }
+        { label: 'Exchange', icon: 'fas fa-sync' },
+        { label: 'About', icon: 'far fa-question-circle' },
+        { label: 'Docs', icon: 'fas fa-book' },
+        { label: 'Discord', icon: 'fab fa-discord' }
       ]
     }
   }

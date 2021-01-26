@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto">
+  <main>
     <PoolList :pools="pools" />
   </main>
 </template>

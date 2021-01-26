@@ -1,6 +1,11 @@
 <template>
   <BaseGrid>
-    <BaseGridItem v-for="(pool, i) in pools" :key="i" width="1/3">
+    <BaseGridItem
+      v-for="(pool, i) in pools"
+      :key="i"
+      width="full"
+      class="md:w-1/2 lg:w-1/3"
+    >
       <PoolListItem :pool="pool" />
     </BaseGridItem>
   </BaseGrid>

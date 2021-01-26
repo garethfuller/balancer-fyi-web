@@ -2,8 +2,8 @@
   <div class="default-container">
     <TopNav />
     <div class="flex">
-      <SideNav class="w-1/3 lg:w-1/5 hidden md:block" />
-      <Nuxt v-if="!loading" />
+      <SideNav class="w-1/3 md:w-1/5 lg:w-1/6 hidden md:block" />
+      <Nuxt v-if="!loading" class="flex-1 pr-4 pl-4 md:pl-0" />
     </div>
   </div>
 </template>

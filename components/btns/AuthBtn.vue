@@ -12,7 +12,7 @@
       <span v-else>Connect a wallet</span>
     </BaseBtn>
     <WalletDialog
-      title="Connect Wallet"
+      title="Connect a wallet"
       :show="dialog"
       @close="closeDialog"
       @clicked="connect"
