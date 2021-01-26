@@ -17,8 +17,10 @@ export const state = () : PricesState => ({
 })
 
 export const actions: ActionTree<PricesState, RootState> = {
-  async getAll ({ commit }: ActionContext<PricesState, RootState>, ids: string[]) : Promise<void> {
-    const prices = await this.$axios.$get(`${API}/simple/price?ids=${ids.join('%2C')}&vs_currencies=usd`)
+  async getAll ({ commit }: ActionContext<PricesState, RootState>) : Promise<void> {
+    const { tokens } = this.$ethConfig
+    const tokenIds = Object.keys(tokens).map(address => tokens[address].id).filter(id => !!id)
+    const prices = await this.$axios.$get(`${API}/simple/price?ids=${tokenIds.join('%2C')}&vs_currencies=usd`)
     commit('setPrices', serialize(prices, this.$ethConfig))
   }
 }

@@ -25,19 +25,9 @@ export default Vue.extend({
     }
   },
 
-  head: {
-    bodyAttrs: {
-      class: 'dark min-h-screen'
-    }
-  },
-
   async beforeMount () {
     try {
-      const { tokens } = this.$ethConfig
-      const tokenIds = Object.keys(tokens)
-        .map(address => tokens[address].id)
-        .filter(id => !!id)
-      await this.getPrices(tokenIds)
+      await this.getPrices()
       this.loading = false
     } catch (error) {
       console.error(error)
