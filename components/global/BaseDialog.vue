@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="show"
-    class="top-0 left-0 fixed h-screen w-full z-50"
+    class="base-dialog top-0 left-0 fixed h-screen w-full"
     @click="hide"
   >
     <transition name="dialog-bg" mode="out-in" appear>
@@ -53,6 +53,10 @@ export default Vue.extend({
 </script>
 
 <style lang="css" scoped>
+.base-dialog {
+  z-index: 100;
+}
+
 .content-container {
   max-width: 500px;
 }
