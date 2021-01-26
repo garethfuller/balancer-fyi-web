@@ -1,6 +1,6 @@
 <template>
-  <div :class="`px-${spacing/2}`">
-    <div :class="[`flex -mx-${spacing}`, { 'flex-wrap': !noWrap }]">
+  <div :class="`w-full px-${spacing/2}`">
+    <div :class="[`flex flex-row -mx-${spacing}`, { 'flex-wrap': !noWrap }]">
       <slot />
     </div>
   </div>

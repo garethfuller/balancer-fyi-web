@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <PoolListItem v-for="(pool, i) in pools" :key="i" :pool="pool" />
-  </div>
+  <BaseGrid>
+    <BaseGridItem v-for="(pool, i) in pools" :key="i" width="1/3">
+      <PoolListItem :pool="pool" />
+    </BaseGridItem>
+  </BaseGrid>
 </template>
 
 <script lang="ts">

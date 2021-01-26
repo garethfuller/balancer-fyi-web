@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main class="container mx-auto">
     <PoolList :pools="pools" />
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

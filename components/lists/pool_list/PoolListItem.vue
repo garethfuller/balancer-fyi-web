@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between">
+  <BaseCard class="h-64">
     <EthAddress :address="pool.id" />
     <div>
       <span v-for="token in pool.tokens" :key="token.address">
@@ -15,7 +15,7 @@
     <div>
       {{ _money(pool.recentSwapVolume) }}
     </div>
-  </div>
+  </BaseCard>
 </template>
 
 <script lang="ts">
