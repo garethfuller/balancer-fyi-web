@@ -60,6 +60,11 @@ export default {
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: ['~/components/global'],
 
+  // https://nuxtjs.org/docs/2.x/directory-structure/middleware/
+  router: {
+    middleware: ['darkMode']
+  },
+
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint

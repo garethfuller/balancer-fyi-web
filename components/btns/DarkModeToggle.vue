@@ -18,8 +18,17 @@ export default Vue.extend({
     ...mapState(['darkMode']),
 
     iconClass (): string {
-      // @ts-ignore
       return this.darkMode ? 'fas fa-sun' : 'fas fa-moon'
+    }
+  },
+
+  watch: {
+    darkMode (on) {
+      if (on) {
+        document.body.classList.add('dark')
+      } else {
+        document.body.classList.remove('dark')
+      }
     }
   },
 
@@ -27,7 +36,6 @@ export default Vue.extend({
     ...mapMutations(['toggleDarkMode']),
 
     toggle (): void {
-      document.body.classList.toggle('dark')
       this.toggleDarkMode()
     }
   }

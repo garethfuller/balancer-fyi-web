@@ -1,14 +1,4 @@
 import { MutationTree } from 'vuex'
-import { AuthState } from './auth'
-import { PoolsState } from './pools'
-import { PricesState } from './prices'
-
-export interface ModuleTree {
-  auth: AuthState,
-  pools: PoolsState,
-  prices: PricesState
-}
-
 export interface RootState {
   darkMode: boolean,
 }
@@ -19,6 +9,7 @@ export const state = () : RootState => ({
 
 export const mutations: MutationTree<RootState> = {
   setDarkMode (state: RootState, val: boolean) {
+    console.log('set darkMode to:', val)
     state.darkMode = val
     localStorage.setItem('darkMode', JSON.stringify(state.darkMode))
   },
