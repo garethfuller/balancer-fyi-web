@@ -1,22 +1,22 @@
 <template>
-  <div
-    class="bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-300 min-h-screen"
-  >
-    <AppNav />
-    <Nuxt v-if="!loading" />
-    <AppFooter />
+  <div class="default-container">
+    <TopNav />
+    <div class="flex">
+      <SideNav class="w-1/3 lg:w-1/5 hidden md:block" />
+      <Nuxt v-if="!loading" />
+    </div>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import { mapActions } from 'vuex'
-import AppNav from '~/components/navs/AppNav.vue'
-import AppFooter from '~/components/navs/AppFooter.vue'
+import TopNav from '~/components/navs/TopNav.vue'
+import SideNav from '~/components/navs/SideNav.vue'
 
 export default Vue.extend({
   components: {
-    AppNav,
-    AppFooter
+    TopNav,
+    SideNav
   },
 
   data () {
@@ -41,4 +41,8 @@ export default Vue.extend({
   }
 })
 </script>
-<style></style>
+<style>
+.default-container {
+  @apply bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-300 min-h-screen;
+}
+</style>

@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="w-12 h-12 text-xl rounded-full flex items-center justify-center cursor-pointer bg-gray-100 dark:bg-gray-800"
-    @click="toggle"
-  >
-    <i :class="iconClass" />
-  </div>
+  <BaseBtn class="mr-4" @click="toggle">
+    <i :class="[iconClass, 'text-lg']" />
+  </BaseBtn>
 </template>
 
 <script lang="ts">

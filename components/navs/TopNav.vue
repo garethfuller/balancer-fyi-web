@@ -1,7 +1,10 @@
 <template>
-  <nav class="flex justify-between items-center px-8 py-4">
+  <nav class="flex justify-between items-center p-4">
     <AppLogo />
-    <AuthBtn />
+    <div class="flex">
+      <DarkModeToggle />
+      <AuthBtn />
+    </div>
   </nav>
 </template>
 
@@ -9,13 +12,15 @@
 import Vue from 'vue'
 import AppLogo from '~/components/images/AppLogo.vue'
 import AuthBtn from '~/components/btns/AuthBtn.vue'
+import DarkModeToggle from '~/components/btns/DarkModeToggle.vue'
 
 export default Vue.extend({
-  name: 'AppNav',
+  name: 'TopNav',
 
   components: {
     AppLogo,
-    AuthBtn
+    AuthBtn,
+    DarkModeToggle
   }
 })
 </script>
