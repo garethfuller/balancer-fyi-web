@@ -27,14 +27,42 @@ export default Vue.extend({
 
   async beforeMount () {
     await this.getPools()
-    console.log(this.pools)
     this.loading = false
   },
 
   methods: {
     ...mapActions({
       getPools: 'pools/getAll'
+      // getPoolsById: 'pools/getByIds'
+      // getLatestSwaps: 'swaps/getLatest'
     })
+
+    // ...mapMutations({
+    //   setPools: 'pools/setPools'
+    // }),
+
+    // async fetchTrending (): Promise<void> {
+    //   const swaps: Swap[] = await this.getLatestSwaps(100)
+    //   const poolAddressIds: string[] = [...new Set(swaps.map(swap => swap.poolAddress.id))]
+    //   const pools: Pool[] = await this.getPoolsById(poolAddressIds)
+    //   let poolsBySwapCount: Array<[string, number]> = []
+
+    //   poolAddressIds.forEach(poolAddress => {
+    //     const poolSwaps: Swap[] = swaps.filter(swap => swap.poolAddress.id === poolAddress)
+    //     poolsBySwapCount.push([poolAddress, poolSwaps.length])
+    //   })
+    //   console.log(poolsBySwapCount)
+    //   poolsBySwapCount = poolsBySwapCount.sort((a, b) => b[1] - a[1])
+
+    //   const newPools: Pool[] = []
+    //   poolsBySwapCount.forEach(p => {
+    //     const pool = pools.find(pool => pool.id === p[0])
+    //     if (!pool) return
+    //     newPools.push(pool)
+    //   })
+
+    //   this.setPools(newPools)
+    // }
   }
 })
 </script>
