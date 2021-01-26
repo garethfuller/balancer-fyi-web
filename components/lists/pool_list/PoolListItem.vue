@@ -107,7 +107,7 @@ export default Vue.extend({
 
 <style>
 .token-card {
-  transition: all .2s ease;
+  transition: box-shadow .2s ease;
 }
 
 .token-container {
