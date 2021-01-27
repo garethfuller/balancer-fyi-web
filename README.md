@@ -4,7 +4,7 @@ This repo is the frontend for [balancer.fyi](https://balancer.fyi). Balancer FYI
 # Development
 To setup the development environment first clone the repo:
 ```bash
-git clone https://github.com/garethfuller/balancer-fyi-web.git && cd balancer-fyi
+git clone https://github.com/garethfuller/balancer-fyi-web.git && cd balancer-fyi-web
 ```
 
 Install dependencies:
