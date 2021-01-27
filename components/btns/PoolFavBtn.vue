@@ -38,7 +38,6 @@ export default Vue.extend({
       } else {
         this.addFav(this.poolId)
       }
-      localStorage.setItem('favPools', JSON.stringify(this.favIds))
     }
   }
 })

@@ -1,3 +1,4 @@
+// Persists darkMode setting on page load
 import { Middleware } from '@nuxt/types'
 
 function getDarkMode (): boolean {

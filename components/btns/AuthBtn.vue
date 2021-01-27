@@ -10,7 +10,9 @@
       @click="setShowDialog(true)"
     >
       <EthAddress v-if="isConnected" :address="address" :ens-name="ensName" />
-      <span v-else>Connect a wallet</span>
+      <span v-else>
+        Connect a wallet
+      </span>
     </BaseBtn>
   </div>
 </template>

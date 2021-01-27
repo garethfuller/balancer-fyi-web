@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     Portfolio
-  </div>
+  </main>
 </template>
 
 <script>
