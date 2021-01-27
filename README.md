@@ -64,6 +64,7 @@ In development, a visual library of the design system can be accessed at [localh
 
 # TODO
 
+- Display user liquidity when wallet connected
 - Add tests for critical components. e.g. AuthBtn.vue
 - Add filtering functionality
 - Add pool information pages
