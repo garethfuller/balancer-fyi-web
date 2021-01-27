@@ -9,7 +9,6 @@ export const state = () : RootState => ({
 
 export const mutations: MutationTree<RootState> = {
   setDarkMode (state: RootState, val: boolean) {
-    console.log('set darkMode to:', val)
     state.darkMode = val
     localStorage.setItem('darkMode', JSON.stringify(state.darkMode))
   },

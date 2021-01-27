@@ -10,7 +10,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import TopNav from '~/components/navs/TopNav.vue'
 import SideNav from '~/components/navs/SideNav.vue'
 import WalletDialog from '~/components/dialogs/WalletDialog.vue'
@@ -28,9 +28,17 @@ export default Vue.extend({
     }
   },
 
+  computed: {
+    favIds () : string[] {
+      const favsJson: string = localStorage.getItem('favPools') || '[]'
+      return JSON.parse(favsJson) || []
+    }
+  },
+
   async beforeMount () {
     try {
       await this.getPrices()
+      this.setFavIds(this.favIds)
       this.loading = false
     } catch (error) {
       console.error(error)
@@ -40,6 +48,10 @@ export default Vue.extend({
   methods: {
     ...mapActions({
       getPrices: 'prices/getAll'
+    }),
+
+    ...mapMutations({
+      setFavIds: 'pools/setFavIds'
     })
   }
 })

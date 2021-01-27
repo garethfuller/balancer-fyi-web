@@ -7,11 +7,13 @@ import { Pool } from '~/types'
 
 export interface PoolsState {
   all: Pool[],
+  favIds: string[],
   loading: boolean
 }
 
 export const state = () : PoolsState => ({
   all: [],
+  favIds: [],
   loading: false
 })
 
@@ -20,8 +22,34 @@ export const mutations: MutationTree<PoolsState> = {
     state.all = pools
   },
 
+  setFavIds (state: PoolsState, ids: string[]) {
+    state.favIds = ids
+  },
+
   addPools (state: PoolsState, pools: Pool[]) {
     state.all.push(...pools)
+  },
+
+  removePool (state: PoolsState, id: string) {
+    const pool = state.all.find(pool => pool.id === id)
+    if (pool) {
+      const index = state.all.indexOf(pool)
+      state.all.splice(index, 1)
+    }
+  },
+
+  addFav (state: PoolsState, id: string) {
+    state.favIds.push(id)
+    localStorage.setItem('favPools', JSON.stringify(state.favIds))
+  },
+
+  removeFav (state: PoolsState, id: string) {
+    const favId = state.favIds.find(f => f === id)
+    if (favId) {
+      const index = state.favIds.indexOf(favId)
+      state.favIds.splice(index, 1)
+    }
+    localStorage.setItem('favPools', JSON.stringify(state.favIds))
   },
 
   setLoading (state: PoolsState, val: boolean) {

@@ -8,7 +8,7 @@
     >
       <PoolListItem :pool="pool" />
     </BaseGridItem>
-    <BaseGridItem width="full" class="md:w-1/2 lg:w-1/3">
+    <BaseGridItem v-if="!noMore" width="full" class="md:w-1/2 lg:w-1/3">
       <LoadMoreBtn @click.native="$emit('loadMore')" />
     </BaseGridItem>
   </BaseGrid>
@@ -28,7 +28,8 @@ export default Vue.extend({
   },
 
   props: {
-    pools: { type: Array, required: true }
+    pools: { type: Array, required: true },
+    noMore: { type: Boolean, default: false }
   }
 })
 </script>

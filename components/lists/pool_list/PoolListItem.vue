@@ -1,13 +1,14 @@
 <template>
   <a :href="`https://pools.balancer.exchange/#/pool/${pool.id}`" target="_blank" rel="noreferrer">
     <BaseCard class="token-card cursor-pointer hover:shadow-xl">
-      <div class="absolute">
-        <div class="relative top-0 left-0 p-2 text-xs text-gray-300 dark:text-gray-600">
+      <div class="relative">
+        <div class="absolute top-0 left-0 p-2 text-xs text-gray-300 dark:text-gray-600">
           <span class="uppercase">
             Pool
           </span>
           <EthAddress :address="pool.id" />
         </div>
+        <PoolFavBtn :pool-id="pool.id" class="absolute top-0 right-0 m-2" />
       </div>
       <div class="token-container px-4 flex flex-wrap items-center justify-center">
         <div class="flex flex-wrap justify-center">
@@ -72,9 +73,14 @@
 import Vue, { PropOptions } from 'vue'
 import { liquidityFor } from '~/lib/balancer/poolHelpers'
 import { Pool, Prices } from '~/types'
+import PoolFavBtn from '~/components/btns/PoolFavBtn.vue'
 
 export default Vue.extend({
   name: 'PoolListItem',
+
+  components: {
+    PoolFavBtn
+  },
 
   props: {
     pool: { type: Object, required: true } as PropOptions<Pool>

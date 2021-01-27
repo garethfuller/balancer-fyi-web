@@ -28,6 +28,7 @@ export default Vue.extend({
     return {
       poolItems: [
         { label: 'Explore', icon: 'far fa-compass', to: '/' },
+        { label: 'Favourites', icon: 'far fa-star', to: '/favourites' },
         { label: 'Portfolio', icon: 'fas fa-chart-bar', to: '' },
         { label: 'Create pool', icon: 'fas fa-plus', to: '' }
       ],
