@@ -43,7 +43,7 @@ To trigger a re-deployment of the latest commit on the `main` branch:
 3. Click `Run workflow` button
 
 ### Rollbacks
-To trigger a rollback deployment:
+Rollbacks to a specific commit can be triggered manually. To trigger a rollback deployment:
 
 1. Select `Rollback CI/CD`
 2. Select `Run worflow`
@@ -60,7 +60,7 @@ The following is a list of relevant and important dependencies:
 # Design System
 The design system is derived from the [Tailwind configuration file](/tailwind.config.js). Please see the [docs](https://tailwindcss.com/docs/configuration) for configuration options.
 
-In development, a visual libray of the design system can be accessed at [localhost:3000/_tailwind](http://localhost:3000/_tailwind)
+In development, a visual library of the design system can be accessed at [localhost:3000/_tailwind](http://localhost:3000/_tailwind)
 
 # TODO
 
