@@ -3,47 +3,37 @@
     <h3 class="uppercase text-sm font-medium opacity-50 mb-2">
       Pools
     </h3>
-    <div v-for="item in poolItems" :key="item.label" class="flex items-center mb-2 dark:hover:text-white hover:text-black cursor-pointer">
-      <div class="w-10">
-        <i :class="[item.icon, 'text-xl opacity-50']" />
-      </div>
-      <h4 class="">
-        {{ item.label }}
-      </h4>
-    </div>
+    <VertNavList :items="poolItems" />
 
     <h3 class="uppercase text-sm font-medium opacity-50 mb-2 mt-8">
       Balancer
     </h3>
-    <div v-for="item in generalItems" :key="item.label" class="flex items-center mb-2 dark:hover:text-white hover:text-black cursor-pointer">
-      <div class="w-10">
-        <i :class="[item.icon, 'text-xl opacity-50']" />
-      </div>
-      <h4 class="">
-        {{ item.label }}
-      </h4>
-    </div>
+    <VertNavList :items="generalItems" />
   </nav>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import VertNavList from '~/components/lists/vert_nav_list/VertNavList.vue'
 
 export default Vue.extend({
   name: 'SideNav',
 
+  components: {
+    VertNavList
+  },
+
   data () {
     return {
       poolItems: [
-        { label: 'Explore', icon: 'far fa-compass' },
-        { label: 'Portfolio', icon: 'fas fa-chart-bar' },
-        { label: 'Create new', icon: 'fas fa-plus' }
+        { label: 'Explore', icon: 'far fa-compass', to: '/' },
+        { label: 'Portfolio', icon: 'fas fa-chart-bar', to: '' },
+        { label: 'Create pool', icon: 'fas fa-plus', to: '' }
       ],
       generalItems: [
-        { label: 'Exchange', icon: 'fas fa-sync' },
-        { label: 'About', icon: 'far fa-question-circle' },
-        { label: 'Docs', icon: 'fas fa-book' },
-        { label: 'Discord', icon: 'fab fa-discord' }
+        { label: 'Exchange', icon: 'fas fa-sync', to: 'https://balancer.exchange/#/swap', external: true },
+        { label: 'Docs', icon: 'fas fa-book', to: 'https://docs.balancer.finance/', external: true },
+        { label: 'Discord', icon: 'fab fa-discord', to: 'https://discord.gg/ARJWaeF', external: true }
       ]
     }
   }
