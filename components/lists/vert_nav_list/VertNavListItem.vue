@@ -6,6 +6,7 @@
       target="_blank"
       rel="noreferrer"
       class="flex items-center dark:hover:text-white hover:text-black cursor-pointer"
+      @click="emitEvent"
     >
       <div class="w-10">
         <i :class="[item.icon, 'text-xl opacity-50']" />
@@ -14,7 +15,12 @@
         {{ item.label }}
       </h4>
     </a>
-    <nuxt-link v-else :to="item.to" class="flex items-center dark:hover:text-white hover:text-black cursor-pointer">
+    <nuxt-link
+      v-else
+      :to="item.to"
+      class="flex items-center dark:hover:text-white hover:text-black cursor-pointer"
+      @click.native="emitEvent"
+    >
       <div class="w-10">
         <i :class="[item.icon, 'text-xl opacity-50']" />
       </div>
@@ -40,6 +46,12 @@ export default Vue.extend({
 
   props: {
     item: { type: Object, required: true } as PropOptions<NavItem>
+  },
+
+  methods: {
+    emitEvent () : void {
+      this.$emit('itemClicked', this.item)
+    }
   }
 })
 </script>

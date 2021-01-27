@@ -3,7 +3,7 @@
     <h3 class="uppercase text-sm font-medium opacity-50 mb-2">
       Pools
     </h3>
-    <VertNavList :items="poolItems" />
+    <VertNavList :items="poolItems" @portfolioClicked="handlePortfolioAccess" />
 
     <h3 class="uppercase text-sm font-medium opacity-50 mb-2 mt-8">
       Balancer
@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapMutations } from 'vuex'
 import VertNavList from '~/components/lists/vert_nav_list/VertNavList.vue'
 
 export default Vue.extend({
@@ -35,6 +36,24 @@ export default Vue.extend({
         { label: 'Docs', icon: 'fas fa-book', to: 'https://docs.balancer.finance/', external: true },
         { label: 'Discord', icon: 'fab fa-discord', to: 'https://discord.gg/ARJWaeF', external: true }
       ]
+    }
+  },
+
+  computed: {
+    isConnected () : boolean { return this.$store.getters['auth/isConnected'] }
+  },
+
+  methods: {
+    ...mapMutations({
+      showAuthDialog: 'auth/setShowDialog'
+    }),
+
+    handlePortfolioAccess () : void {
+      if (this.isConnected) {
+        this.$router.push('/portfolio')
+      } else {
+        this.showAuthDialog(true)
+      }
     }
   }
 })

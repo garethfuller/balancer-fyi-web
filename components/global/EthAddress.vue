@@ -27,6 +27,11 @@ export default Vue.extend({
     address (newAddresss: string) : void {
       this.truncateLabel(newAddresss)
       if (!this.hash) this.setEnsLabel()
+    },
+
+    ensName () : void {
+      this.truncateLabel(this.address)
+      if (!this.hash) this.setEnsLabel()
     }
   },
 

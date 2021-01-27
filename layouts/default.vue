@@ -5,6 +5,7 @@
       <SideNav class="w-1/3 md:w-1/5 lg:w-1/6 hidden md:block" />
       <Nuxt v-if="!loading" class="flex-1 pr-4 pl-4 md:pl-0" />
     </div>
+    <WalletDialog />
   </div>
 </template>
 <script lang="ts">
@@ -12,11 +13,13 @@ import Vue from 'vue'
 import { mapActions } from 'vuex'
 import TopNav from '~/components/navs/TopNav.vue'
 import SideNav from '~/components/navs/SideNav.vue'
+import WalletDialog from '~/components/dialogs/WalletDialog.vue'
 
 export default Vue.extend({
   components: {
     TopNav,
-    SideNav
+    SideNav,
+    WalletDialog
   },
 
   data () {

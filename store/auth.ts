@@ -1,20 +1,28 @@
 import { ethers } from 'ethers'
 import { Web3Provider } from '@ethersproject/providers'
 import { Signer } from '@ethersproject/abstract-signer'
-import { ActionContext, ActionTree, MutationTree } from 'vuex'
+import { ActionContext, ActionTree, MutationTree, GetterTree } from 'vuex'
 import { RootState } from './index'
 
 export interface AuthState {
   provider?: Web3Provider,
   signer?: Signer,
   address: string,
-  ensName: string
+  ensName: string,
+  showDialog: boolean,
+  connecting: boolean
 }
 
 export const state = () : AuthState => ({
   address: '',
-  ensName: ''
+  ensName: '',
+  showDialog: false,
+  connecting: false
 })
+
+export const getters: GetterTree<AuthState, RootState> = {
+  isConnected: state => !!state.address
+}
 
 export const mutations: MutationTree<AuthState> = {
   setProvider (state: AuthState, provider: Web3Provider) {
@@ -31,6 +39,14 @@ export const mutations: MutationTree<AuthState> = {
 
   setEnsName (state: AuthState, name: string) {
     state.ensName = name
+  },
+
+  setShowDialog (state: AuthState, val: boolean) {
+    state.showDialog = val
+  },
+
+  setConnecting (state: AuthState, val: boolean) {
+    state.connecting = val
   }
 }
 
