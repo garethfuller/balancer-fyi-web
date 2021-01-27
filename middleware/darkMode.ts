@@ -2,7 +2,7 @@ import { Middleware } from '@nuxt/types'
 
 function getDarkMode (): boolean {
   const data: string = localStorage.getItem('darkMode') || ''
-  if (!data) return true
+  if (!data) return false
 
   return JSON.parse(data)
 }
