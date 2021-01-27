@@ -42,8 +42,8 @@ import Vue from 'vue'
 import { mapMutations, mapActions } from 'vuex'
 import { Web3Provider } from '@ethersproject/providers'
 import { Signer } from '@ethersproject/abstract-signer'
-// import WalletConnect from '@walletconnect/client'
-// import QRCodeModal from '@walletconnect/qrcode-modal'
+import WalletConnect from '@walletconnect/client'
+import QRCodeModal from '@walletconnect/qrcode-modal'
 
 interface ConnectInfo {
   chainId: string;
@@ -58,13 +58,13 @@ export default Vue.extend({
 
   data () {
     return {
-      error: ''
-      // walletConnect: {
-      //   connector: new WalletConnect({
-      //     bridge: 'https://bridge.walletconnect.org',
-      //     qrcodeModal: QRCodeModal
-      //   })
-      // }
+      error: '',
+      walletConnect: {
+        connector: new WalletConnect({
+          bridge: 'https://bridge.walletconnect.org',
+          qrcodeModal: QRCodeModal
+        })
+      }
     }
   },
 
@@ -85,8 +85,8 @@ export default Vue.extend({
   async mounted () {
     try {
       this.setConnecting(true)
-      // if (this.walletConnect.connector.connected) this.walletConnect.connector.killSession()
-      // this.addWalletConnectListeners()
+      if (this.walletConnect.connector.connected) this.walletConnect.connector.killSession()
+      this.addWalletConnectListeners()
       if (this.hasBrowserProvider) {
         await this.getCurrentAccount()
         this.listenForAccountChange()
@@ -101,9 +101,9 @@ export default Vue.extend({
     }
   },
 
-  // beforeDestroy () {
-  //   this.walletConnect.connector.killSession()
-  // },
+  beforeDestroy () {
+    this.walletConnect.connector.killSession()
+  },
 
   methods: {
     ...mapActions({
@@ -126,9 +126,9 @@ export default Vue.extend({
       this.setConnecting(true)
       try {
         switch (wallet) {
-          // case 'walletConnect':
-          //   this.connectWalletConnect()
-          //   break
+          case 'walletConnect':
+            this.connectWalletConnect()
+            break
           default:
             this.connectBrowser()
             break
@@ -147,6 +147,15 @@ export default Vue.extend({
         this.closeDialog()
       } else {
         this.error = 'Browser provider not found.'
+      }
+    },
+
+    connectWalletConnect () {
+      try {
+        this.walletConnect.connector.killSession()
+        this.walletConnect.connector.createSession()
+      } catch (error) {
+        this.error = error.message
       }
     },
 
@@ -186,12 +195,36 @@ export default Vue.extend({
       })
     },
 
+    addWalletConnectListeners () {
+      try {
+        this.walletConnect.connector.on('connect', (error, payload) => {
+          if (error) throw error
+          const { accounts } = payload.params[0]
+          this.setAddress(accounts[0])
+          this.closeDialog()
+        })
+
+        this.walletConnect.connector.on('session_update', (error, payload) => {
+          if (error) throw error
+          const { accounts } = payload.params[0]
+          this.address = accounts[0]
+        })
+
+        this.walletConnect.connector.on('disconnect', error => {
+          if (error) throw error
+          this.disconnect()
+        })
+      } catch (error) {
+        this.error = error.message
+      }
+    },
+
     disconnect () : void {
       this.setAddress('')
       this.setEnsName('')
       this.setSigner(undefined)
       this.setProvider(undefined)
-      // this.walletConnect.connector.killSession()
+      this.walletConnect.connector.killSession()
     },
 
     closeDialog () : void {
