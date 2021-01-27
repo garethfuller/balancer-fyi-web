@@ -46,6 +46,7 @@ export default Vue.extend({
 </script>
 <style>
 .default-container {
-  @apply bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-300 min-h-screen pb-12;
+  @apply bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-300 min-h-screen pb-12 mx-auto;
+  max-width: 1600px;
 }
 </style>
