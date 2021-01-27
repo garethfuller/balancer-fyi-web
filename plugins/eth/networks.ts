@@ -7,7 +7,7 @@ export const homestead: EthConfigObj = {
   defaultPrecision: 2,
   rpcUrl: 'https://mainnet.infura.io/v3/ca46d8be9c96443fa1f3bd92fc810abf',
   wsUrl: 'wss://mainnet.infura.io/ws/v3/ca46d8be9c96443fa1f3bd92fc810abf',
-  subgraphUrl: 'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-beta',
+  subgraphUrl: 'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer',
   explorer: 'https://etherscan.io',
   addresses: {
     bFactory: '0x9424B1412450D0f8Fc2255FAf6046b98213B76Bd',
