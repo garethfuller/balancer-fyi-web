@@ -1,3 +1,5 @@
+import { ogMeta } from '~/lib/meta'
+
 export default {
   ssr: false,
 
@@ -19,7 +21,8 @@ export default {
     title: 'Balancer FYI - Alternative UI for Balancer Pools',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ...ogMeta()
     ],
     link: [
       {
@@ -80,9 +83,6 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios'
   ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
