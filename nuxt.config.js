@@ -1,4 +1,4 @@
-import { ogMeta } from '~/lib/meta'
+import { ogMeta } from './lib/meta'
 
 export default {
   ssr: false,
