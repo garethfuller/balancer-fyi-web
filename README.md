@@ -49,3 +49,22 @@ To trigger a rollback deployment:
 2. Select `Run worflow`
 3. Paste in the commit SHA you want to rollback to
 4. Click `Run workflow` button
+
+# Dependencies
+The following is a list of relevant and important dependencies:
+
+- [Nuxt.js](https://nuxtjs.org/) - A frontend Vue framework
+- [TailwindCSS](https://tailwindcss.com/) - Utility CSS class framework
+- [Ethers.js](https://docs.ethers.io/v5/) - JS library for interacting with Ethereum
+
+# Design System
+The design system is derived from the [Tailwind configuration file](/tailwind.config.js). Please see the [docs](https://tailwindcss.com/docs/configuration) for configuration options.
+
+In development, a visual libray of the design system can be accessed at [localhost:3000/_tailwind](http://localhost:3000/_tailwind)
+
+# TODO
+
+- Add tests for critical components. e.g. AuthBtn.vue
+- Add filtering functionality
+- Add pool information pages
+- Add create pool functionality
