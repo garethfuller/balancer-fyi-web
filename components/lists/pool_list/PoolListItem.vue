@@ -41,7 +41,7 @@
       <div class="flex justify-between bg-gray-50 dark:bg-gray-800 p-4 px-8 mt-4 border-t border-gray-100 dark:border-gray-700 rounded-b">
         <div class="flex flex-col">
           <span class="font-medium text-sm text-gray-500 dark:text-gray-400">
-            {{ _money(0) }}
+            -
           </span>
           <span class="uppercase text-xs font-medium text-gray-400 dark:text-gray-500">
             My liquidity
@@ -118,5 +118,6 @@ export default Vue.extend({
   max-width: 45px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
