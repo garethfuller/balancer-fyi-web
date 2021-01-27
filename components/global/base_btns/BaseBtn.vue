@@ -44,7 +44,7 @@ export default Vue.extend({
   props: {
     tag: { type: String, default: 'button' },
     size: { type: String, default: 'md' },
-    color: { type: String, default: 'green' },
+    color: { type: String, default: 'gray' },
     rounded: { type: Boolean, default: false },
     block: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
@@ -64,7 +64,13 @@ export default Vue.extend({
     },
 
     bgClasses () {
-      return 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
+      if (this.color === 'gray') return 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
+      return `
+        bg-${this.color}-100 hover:bg-${this.color}-200
+        dark:bg-${this.color}-900  dark:hover:bg-${this.color}-800 
+        text-${this.color}-500 hover:text-${this.color}-600
+        dark:text-${this.color}-300 dark:hover:text-${this.color}-100
+      `
     },
 
     sizeClasses () : string {

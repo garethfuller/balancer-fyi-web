@@ -4,6 +4,7 @@
       :disabled="connecting"
       :loading="connecting"
       loading-label="Connecting..."
+      :color="isConnected ? 'gray' : 'blue'"
       block
       flat
       @click="setShowDialog(true)"
