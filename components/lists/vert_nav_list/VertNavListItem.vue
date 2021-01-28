@@ -20,7 +20,7 @@
       :to="item.to"
       :class="[
         'flex items-center dark:hover:text-white hover:text-black cursor-pointer',
-        { 'text-blue-500': item.active }
+        { 'text-blue-500 hover:text-blue-500 dark:hover:text-blue-500': item.active }
       ]"
       @click.native="emitEvent"
     >
