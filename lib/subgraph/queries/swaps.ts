@@ -1,16 +1,24 @@
-type Options = {
-  count: number
-}
+const now = Math.round(new Date().getTime() / 1000)
+const tsYesterday = now - 48 * 3600
 
-export const latestQuery = (options: Options = { count: 100 }) : object => ({
+export const last24hQuery = () : object => ({
   query: {
     swaps: {
       __args: {
-        first: options.count,
+        first: 1000,
         orderBy: 'timestamp',
-        orderDirection: 'desc'
+        orderDirection: 'desc',
+        where: {
+          timestamp_lt: tsYesterday
+        }
       },
+      tokenIn: true,
+      tokenInSym: true,
+      tokenOutSym: true,
+      tokenOut: true,
       tokenAmountIn: true,
+      tokenAmountOut: true,
+      timestamp: true,
       poolAddress: {
         id: true
       }

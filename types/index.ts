@@ -23,8 +23,15 @@ export interface Token {
 
 export interface Swap {
   poolAddress: { id: string },
+  poolTotalSwapVolume: string,
+  tokenIn: string,
+  tokenOut: string,
   tokenAmountIn: string,
-  poolTotalSwapVolume: string
+  tokenAmountOut: string,
+  timestamp: number,
+  amountInUsd: number,
+  amountOutUsd: number,
+  amountChange: number
 }
 
 export interface Pool {
