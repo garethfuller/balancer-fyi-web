@@ -26,13 +26,6 @@ export default Vue.extend({
 
   data () {
     return {
-      poolItems: [
-        { label: 'Explore', icon: 'far fa-compass', to: '/' },
-        { label: 'Trending', icon: 'fas fa-chart-line', to: '/trending' },
-        { label: 'Favourites', icon: 'far fa-star', to: '/favourites' },
-        { label: 'Portfolio', icon: 'fas fa-chart-bar', to: '' },
-        { label: 'Create pool', icon: 'fas fa-plus', to: '' }
-      ],
       generalItems: [
         { label: 'Exchange', icon: 'fas fa-sync', to: 'https://balancer.exchange/#/swap', external: true },
         { label: 'Docs', icon: 'fas fa-book', to: 'https://docs.balancer.finance/', external: true },
@@ -42,7 +35,17 @@ export default Vue.extend({
   },
 
   computed: {
-    isConnected () : boolean { return this.$store.getters['auth/isConnected'] }
+    isConnected () : boolean { return this.$store.getters['auth/isConnected'] },
+
+    poolItems () : object[] {
+      return [
+        { label: 'Explore', icon: 'far fa-compass', to: '/', active: this.$route.name === 'index' },
+        { label: 'Trending', icon: 'fas fa-chart-line', to: '/trending', active: this.$route.name === 'trending' },
+        { label: 'Favourites', icon: 'far fa-star', to: '/favourites', active: this.$route.name === 'favourites' },
+        { label: 'Portfolio', icon: 'fas fa-chart-bar', to: '' },
+        { label: 'Create pool', icon: 'fas fa-plus', to: '' }
+      ]
+    }
   },
 
   methods: {

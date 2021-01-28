@@ -1,6 +1,8 @@
 <template>
   <nav class="flex justify-between items-center p-4">
-    <AppLogo />
+    <nuxt-link to="/">
+      <AppLogo />
+    </nuxt-link>
     <div class="flex">
       <DarkModeToggle />
       <AuthBtn />

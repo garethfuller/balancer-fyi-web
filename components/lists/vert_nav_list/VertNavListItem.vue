@@ -18,7 +18,10 @@
     <nuxt-link
       v-else
       :to="item.to"
-      class="flex items-center dark:hover:text-white hover:text-black cursor-pointer"
+      :class="[
+        'flex items-center dark:hover:text-white hover:text-black cursor-pointer',
+        { 'text-blue-500': item.active }
+      ]"
       @click.native="emitEvent"
     >
       <div class="w-10">
@@ -38,7 +41,8 @@ export interface NavItem {
   label: string,
   icon: string,
   to?: string,
-  external?: boolean
+  external?: boolean,
+  active?: boolean
 }
 
 export default Vue.extend({
