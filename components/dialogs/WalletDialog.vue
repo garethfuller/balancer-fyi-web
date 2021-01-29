@@ -177,9 +177,13 @@ export default Vue.extend({
     },
 
     listenForAccountChange () : void {
-      window.ethereum.on('accountsChanged', (accounts: string[]) => {
+      window.ethereum.on('accountsChanged', async (accounts: string[]) => {
         this.setAddress(accounts[0])
-        if (!this.address) this.disconnect()
+        if (!this.address) {
+          this.disconnect()
+        } else {
+          await this.getEnsName()
+        }
       })
     },
 
@@ -201,13 +205,23 @@ export default Vue.extend({
           if (error) throw error
           const { accounts } = payload.params[0]
           this.setAddress(accounts[0])
+          if (!this.address) {
+            this.disconnect()
+          } else {
+            this.getEnsName()
+          }
           this.closeDialog()
         })
 
         this.walletConnect.connector.on('session_update', (error, payload) => {
           if (error) throw error
           const { accounts } = payload.params[0]
-          this.address = accounts[0]
+          this.setAddress(accounts[0])
+          if (!this.address) {
+            this.disconnect()
+          } else {
+            this.getEnsName()
+          }
         })
 
         this.walletConnect.connector.on('disconnect', error => {

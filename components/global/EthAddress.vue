@@ -13,50 +13,18 @@ export default Vue.extend({
   props: {
     address: { type: String, required: true },
     ensName: { type: String, default: '' },
-    hash: { type: Boolean, default: false },
     segLength: { type: Number, default: 4 }
   },
 
-  data () {
-    return {
-      label: ''
-    }
-  },
-
-  watch: {
-    address (newAddresss: string) : void {
-      this.truncateLabel(newAddresss)
-      if (!this.hash) this.setEnsLabel()
+  computed: {
+    label () : string {
+      return this.ensName || this.truncatedAddress
     },
 
-    ensName () : void {
-      this.truncateLabel(this.address)
-      if (!this.hash) this.setEnsLabel()
-    }
-  },
-
-  beforeMount () {
-    this.truncateLabel(this.address)
-    if (!this.hash) this.setEnsLabel()
-  },
-
-  methods: {
-    setEnsLabel () : void {
-      try {
-        if (this.ensName) {
-          this.label = this.ensName
-        } else {
-          this.truncateLabel(this.address)
-        }
-      } catch (error) {
-        console.error(error)
-      }
-    },
-
-    truncateLabel (address: string) : void {
-      const firstSegment: string = address.substring(0, this.segLength + 2)
-      const lastSegment: string = address.substring(address.length, address.length - this.segLength)
-      this.label = `${firstSegment}...${lastSegment}`
+    truncatedAddress () : string {
+      const firstSegment: string = this.address.substring(0, this.segLength + 2)
+      const lastSegment: string = this.address.substring(this.address.length, this.address.length - this.segLength)
+      return `${firstSegment}...${lastSegment}`
     }
   }
 })

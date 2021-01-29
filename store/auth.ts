@@ -1,4 +1,5 @@
 import { ethers } from 'ethers'
+import { getAddress } from '@ethersproject/address'
 import { Web3Provider } from '@ethersproject/providers'
 import { Signer } from '@ethersproject/abstract-signer'
 import { ActionContext, ActionTree, MutationTree, GetterTree } from 'vuex'
@@ -34,7 +35,7 @@ export const mutations: MutationTree<AuthState> = {
   },
 
   setAddress (state: AuthState, address: string) {
-    state.address = address
+    state.address = getAddress(address)
   },
 
   setEnsName (state: AuthState, name: string) {
@@ -71,7 +72,7 @@ export const actions: ActionTree<AuthState, RootState> = {
   async getEnsName ({ commit, state }: ActionContext<AuthState, RootState>) : Promise<void> {
     if (!state.provider) return
     const name = await state.provider.lookupAddress(state.address)
-    const address = await state.provider.resolveName(name)
+    const address = getAddress(await state.provider.resolveName(name))
     if (address === state.address) commit('setEnsName', name)
   }
 }
