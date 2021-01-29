@@ -1,7 +1,7 @@
 import { jsonToGraphQLQuery } from 'json-to-graphql-query'
 import { ActionContext, ActionTree, MutationTree } from 'vuex'
 import { RootState } from './index'
-import { byLiquidityQuery, byIdsQuery } from '~/lib/subgraph/queries/pools'
+import { byLiquidityQuery, byIdsQuery, byControllerQuery } from '~/lib/subgraph/queries/pools'
 import serializePool from '~/lib/subgraph/serializers/pools'
 import { Pool } from '~/types'
 
@@ -68,6 +68,14 @@ export const actions: ActionTree<PoolsState, RootState> = {
 
   async getByIds ({ commit }: ActionContext<PoolsState, RootState>, ids: string[]) : Promise<Pool[]> {
     const query = jsonToGraphQLQuery(byIdsQuery(ids))
+    const { data } = await this.$axios.$post(this.$ethConfig.subgraphUrl, { query })
+    const pools = data.pools.map((pool: Pool) => serializePool(pool, this.$ethConfig))
+    commit('setPools', pools)
+    return pools
+  },
+
+  async getByOwner ({ commit }: ActionContext<PoolsState, RootState>, proxyAddress: string) : Promise<Pool[]> {
+    const query = jsonToGraphQLQuery(byControllerQuery(proxyAddress))
     const { data } = await this.$axios.$post(this.$ethConfig.subgraphUrl, { query })
     const pools = data.pools.map((pool: Pool) => serializePool(pool, this.$ethConfig))
     commit('setPools', pools)

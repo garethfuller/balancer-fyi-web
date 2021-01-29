@@ -42,7 +42,7 @@ export default Vue.extend({
         { label: 'Explore', icon: 'far fa-compass', to: '/', active: this.$route.name === 'index' },
         { label: 'Trending', icon: 'fas fa-chart-line', to: '/trending', active: this.$route.name === 'trending' },
         { label: 'Favourites', icon: 'far fa-star', to: '/favourites', active: this.$route.name === 'favourites' },
-        { label: 'Portfolio', icon: 'fas fa-chart-bar', to: '' },
+        { label: 'Portfolio', icon: 'fas fa-chart-bar', to: '', active: this.$route.name === 'portfolio' },
         { label: 'Create pool', icon: 'fas fa-plus', to: '' }
       ]
     }

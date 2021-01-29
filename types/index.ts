@@ -78,7 +78,15 @@ export interface EthConfigObj {
   wsUrl: string,
   subgraphUrl: string,
   explorer: string,
-  addresses: object,
+  addresses: {
+    bFactory: string,
+    bActions: string,
+    dsProxyRegistry: string,
+    proxy: string,
+    crpFactory: string,
+    weth: string,
+    multicall: string
+  },
   tokens: EthConfigTokens
 }
 

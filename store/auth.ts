@@ -2,14 +2,17 @@ import { ethers } from 'ethers'
 import { getAddress } from '@ethersproject/address'
 import { Web3Provider } from '@ethersproject/providers'
 import { Signer } from '@ethersproject/abstract-signer'
+import { Contract } from '@ethersproject/contracts'
 import { ActionContext, ActionTree, MutationTree, GetterTree } from 'vuex'
 import { RootState } from './index'
+import DSProxyRegistry from '~/lib/contracts/abis/DSProxyRegistry.json'
 
 export interface AuthState {
   provider?: Web3Provider,
   signer?: Signer,
   address: string,
   ensName: string,
+  proxy: string,
   showDialog: boolean,
   connecting: boolean
 }
@@ -17,6 +20,7 @@ export interface AuthState {
 export const state = () : AuthState => ({
   address: '',
   ensName: '',
+  proxy: '',
   showDialog: false,
   connecting: false
 })
@@ -40,6 +44,10 @@ export const mutations: MutationTree<AuthState> = {
 
   setEnsName (state: AuthState, name: string) {
     state.ensName = name
+  },
+
+  setProxy (state: AuthState, proxy: string) {
+    state.proxy = proxy
   },
 
   setShowDialog (state: AuthState, val: boolean) {
@@ -74,5 +82,16 @@ export const actions: ActionTree<AuthState, RootState> = {
     const name = await state.provider.lookupAddress(state.address)
     const address = getAddress(await state.provider.resolveName(name))
     if (address === state.address) commit('setEnsName', name)
+  },
+
+  async getProxy ({ commit, state }: ActionContext<AuthState, RootState>) : Promise<void> {
+    if (!state.provider) return
+    const dsProxyRegistryContract = new Contract(
+      this.$ethConfig.addresses.dsProxyRegistry,
+      DSProxyRegistry.abi,
+      state.provider
+    )
+    const proxy = await dsProxyRegistryContract.proxies(state.address)
+    commit('setProxy', proxy)
   }
 }

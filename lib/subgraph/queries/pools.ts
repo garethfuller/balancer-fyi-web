@@ -112,3 +112,50 @@ export const byIdsQuery = (ids: string[], options: Options = { count: 100 }) : o
     }
   }
 })
+
+export const byControllerQuery = (proxyAddress: string) : object => ({
+  query: {
+    pools: {
+      __args: {
+        where: {
+          crpController: proxyAddress
+        }
+      },
+      id: true,
+      publicSwap: true,
+      finalized: true,
+      crp: true,
+      rights: true,
+      swapFee: true,
+      totalWeight: true,
+      totalShares: true,
+      totalSwapVolume: true,
+      liquidity: true,
+      tokensList: true,
+      swapsCount: true,
+      tokens: {
+        __args: {
+          orderBy: 'denormWeight',
+          orderDirection: 'desc'
+        },
+        id: true,
+        address: true,
+        balance: true,
+        decimals: true,
+        symbol: true,
+        denormWeight: true
+      },
+      swaps: {
+        __args: {
+          first: 1,
+          orderBy: 'timestamp',
+          orderDirection: 'desc',
+          where: {
+            timestamp_lt: tsYesterday
+          }
+        },
+        poolTotalSwapVolume: true
+      }
+    }
+  }
+})
