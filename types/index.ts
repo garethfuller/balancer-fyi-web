@@ -51,6 +51,13 @@ export interface Pool {
   tokens: Token[]
 }
 
+export interface PoolShare {
+  id: string,
+  balance: string,
+  userAddress: { id: string },
+  poolId: { id: string }
+}
+
 export interface Prices {
   [key: string]: number
 }

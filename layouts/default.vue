@@ -31,9 +31,17 @@ export default Vue.extend({
   },
 
   computed: {
+    userAddress () : string { return this.$store.state.auth.address },
+
     favIds () : string[] {
       const favsJson: string = localStorage.getItem('favPools') || '[]'
       return JSON.parse(favsJson) || []
+    }
+  },
+
+  watch: {
+    userAddress (newAddress) {
+      if (newAddress) this.getPoolShares(newAddress)
     }
   },
 
@@ -49,7 +57,8 @@ export default Vue.extend({
 
   methods: {
     ...mapActions({
-      getPrices: 'prices/getAll'
+      getPrices: 'prices/getAll',
+      getPoolShares: 'poolShares/getAll'
     }),
 
     ...mapMutations({

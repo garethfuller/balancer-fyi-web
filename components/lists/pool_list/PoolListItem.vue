@@ -42,7 +42,7 @@
       <div class="flex justify-between bg-gray-50 dark:bg-gray-800 p-4 px-8 mt-4 border-t border-gray-100 dark:border-gray-700 rounded-b">
         <div class="flex flex-col">
           <span class="font-medium text-sm text-gray-500 dark:text-gray-400">
-            -
+            {{ _money(myLiquidity) }}
           </span>
           <span class="uppercase text-xs font-medium text-gray-400 dark:text-gray-500">
             My liquidity
@@ -88,6 +88,7 @@ export default Vue.extend({
 
   computed: {
     prices (): Prices { return this.$store.state.prices.all },
+    balances () : Record<string, string> { return this.$store.getters['poolShares/balances'] },
 
     swapFee () : string {
       return this.pool.swapFee
@@ -95,6 +96,13 @@ export default Vue.extend({
 
     liquidity () : number {
       return Number(liquidityFor(this.pool, this.prices))
+    },
+
+    myLiquidity () : number {
+      if (!this.pool.finalized) return 0
+      const poolShare = parseFloat(this.balances[this.pool.id]) || 0
+
+      return (this.liquidity / parseFloat(this.pool.totalShares)) * poolShare
     },
 
     iconSize () : string {
