@@ -23,7 +23,8 @@
     "ethers": "^5.0.26",
     "json-to-graphql-query": "^2.0.0",
     "numeral": "^2.0.6",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.14.12",
+    "vue-click-outside": "^1.1.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.12",
