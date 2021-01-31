@@ -1,11 +1,18 @@
 <template>
   <div class="default-container">
-    <TopNav />
     <div class="flex">
       <div class="w-1/3 md:w-1/5 lg:w-1/6 hidden md:block">
+        <div class="h-20 px-4 flex items-center">
+          <nuxt-link to="/">
+            <AppLogo />
+          </nuxt-link>
+        </div>
         <SideNav class="sticky top-0" />
       </div>
-      <Nuxt v-if="!loading" class="flex-1 pr-4 pl-4 md:pl-0" />
+      <div class="flex-1 pr-4 pl-4 md:pl-0">
+        <TopNav />
+        <Nuxt v-if="!loading" class="" />
+      </div>
     </div>
     <WalletDialog />
   </div>
@@ -15,12 +22,14 @@ import Vue from 'vue'
 import { mapActions, mapMutations } from 'vuex'
 import TopNav from '~/components/navs/TopNav.vue'
 import SideNav from '~/components/navs/SideNav.vue'
+import AppLogo from '~/components/images/AppLogo.vue'
 import WalletDialog from '~/components/dialogs/WalletDialog.vue'
 
 export default Vue.extend({
   components: {
     TopNav,
     SideNav,
+    AppLogo,
     WalletDialog
   },
 
