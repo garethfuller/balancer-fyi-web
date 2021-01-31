@@ -11,6 +11,7 @@ import { mapActions } from 'vuex'
 import PoolList from '~/components/lists/pool_list/PoolList.vue'
 import PoolLoadingBlocks from '~/components/lists/pool_list/PoolLoadingBlocks.vue'
 import { Pool } from '~/types'
+import { defaultArgs, PoolArgs } from '~/lib/subgraph/queries/pools'
 
 export default Vue.extend({
   components: {
@@ -30,17 +31,25 @@ export default Vue.extend({
     ids () : string[] {
       const favsJson: string = localStorage.getItem('favPools') || '[]'
       return JSON.parse(favsJson) || []
+    },
+
+    poolArgs () : PoolArgs {
+      return Object.assign({}, defaultArgs, {
+        where: {
+          id_in: this.ids
+        }
+      })
     }
   },
 
   async beforeMount () {
-    await this.getPoolsById(this.ids)
+    await this.getPools(this.poolArgs)
     this.loading = false
   },
 
   methods: {
     ...mapActions({
-      getPoolsById: 'pools/getByIds'
+      getPools: 'pools/getAll'
     })
   }
 })

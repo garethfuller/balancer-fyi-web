@@ -12,6 +12,7 @@ import { Prices, Swap, Pool } from '~/types'
 import { getters } from '~/store/swaps'
 import PoolList from '~/components/lists/pool_list/PoolList.vue'
 import PoolLoadingBlocks from '~/components/lists/pool_list/PoolLoadingBlocks.vue'
+import { defaultArgs, PoolArgs } from '~/lib/subgraph/queries/pools'
 
 export default Vue.extend({
   components: {
@@ -38,13 +39,21 @@ export default Vue.extend({
         if (pool) pools.push(pool)
       })
       return pools.slice(0, 10)
+    },
+
+    poolArgs () : PoolArgs {
+      return Object.assign({}, defaultArgs, {
+        where: {
+          id_in: this.poolsIdsByAmountIn
+        }
+      })
     }
   },
 
   async beforeMount () {
     try {
       await this.getSwaps(this.prices)
-      await this.getPoolsByIds(this.poolsIdsByAmountIn)
+      await this.getPools(this.poolArgs)
       this.loading = false
     } catch (error) {
       console.error(error)
@@ -54,7 +63,7 @@ export default Vue.extend({
   methods: {
     ...mapActions({
       getSwaps: 'swaps/getLast24h',
-      getPoolsByIds: 'pools/getByIds'
+      getPools: 'pools/getAll'
     })
   }
 })

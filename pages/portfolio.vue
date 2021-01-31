@@ -22,6 +22,7 @@ import { mapActions } from 'vuex'
 import PoolList from '~/components/lists/pool_list/PoolList.vue'
 import PoolLoadingBlocks from '~/components/lists/pool_list/PoolLoadingBlocks.vue'
 import PoolBlankSlate from '~/components/lists/pool_list/PoolBlankSlate.vue'
+import { defaultArgs, PoolArgs } from '~/lib/subgraph/queries/pools'
 
 export default Vue.extend({
   components: {
@@ -43,21 +44,38 @@ export default Vue.extend({
 
     liquidityProvidedPoolIds () : string[] {
       return Object.keys(this.$store.getters['poolShares/balances']).map(id => id.toLowerCase())
+    },
+
+    liquidityProvidedPoolArgs () : PoolArgs {
+      return Object.assign({}, defaultArgs, {
+        where: {
+          active: true,
+          tokensCount_gt: 1,
+          id_in: this.liquidityProvidedPoolIds
+        }
+      })
+    },
+
+    createdPoolArgs () : PoolArgs {
+      return Object.assign({}, defaultArgs, {
+        where: {
+          crpController: this.proxyAddress
+        }
+      })
     }
   },
 
   async beforeMount () {
-    this.liquidityProvidedPools = await this.getPoolsById(this.liquidityProvidedPoolIds)
+    this.liquidityProvidedPools = await this.getPools(this.liquidityProvidedPoolArgs)
     await this.getProxyAddress()
-    this.createdPools = await this.getCreatedPools(this.proxyAddress)
+    this.createdPools = await this.getPools(this.createdPoolArgs)
     this.loading = false
   },
 
   methods: {
     ...mapActions({
-      getPoolsById: 'pools/getByIds',
-      getProxyAddress: 'auth/getProxy',
-      getCreatedPools: 'pools/getByOwner'
+      getPools: 'pools/getAll',
+      getProxyAddress: 'auth/getProxy'
     })
   }
 })

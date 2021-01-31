@@ -11,6 +11,7 @@ import { mapActions, mapMutations } from 'vuex'
 import PoolList from '~/components/lists/pool_list/PoolList.vue'
 import PoolLoadingBlocks from '~/components/lists/pool_list/PoolLoadingBlocks.vue'
 import { Pool } from '~/types'
+import { argsFor } from '~/lib/subgraph/queries/pools'
 
 export default Vue.extend({
   components: {
@@ -25,11 +26,23 @@ export default Vue.extend({
   },
 
   computed: {
-    pools (): Pool[] { return this.$store.state.pools.all }
+    pools (): Pool[] { return this.$store.state.pools.all },
+
+    type () : string {
+      return this.$route.query.type as string || 'shared'
+    }
+  },
+
+  watch: {
+    async type (newType) : Promise<void> {
+      this.loading = true
+      await this.getPools(argsFor(newType))
+      this.loading = false
+    }
   },
 
   async beforeMount () {
-    await this.getPools()
+    await this.getPools(argsFor(this.type))
     this.loading = false
   },
 
@@ -44,8 +57,9 @@ export default Vue.extend({
     }),
 
     async loadMorePools (): Promise<void> {
+      const args = Object.assign({}, argsFor(this.type), { skip: this.pools.length })
       this.setLoading(true)
-      await this.getMorePools(this.pools.length)
+      await this.getMorePools(args)
       this.setLoading(false)
     }
   }
